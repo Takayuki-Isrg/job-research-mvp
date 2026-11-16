@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>求人票の確認 | 求人調査 MVP</title>
+    <link rel="stylesheet" href="review.css" />
+    <script type="module" src="review.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">求人調査 MVP / ページの確認</p>
+        <h1>この求人の情報を確認</h1>
+        <p>
+          求人情報を確認・修正し、このPC上のOllamaで分析できます。外部企業調査・Google
+          Sheets登録は行いません。
+        </p>
+      </header>
+      <div id="notice" role="status" aria-live="polite">
+        求人票の情報を取得しています…
+      </div>
+      <section id="result" hidden>
+        <section class="panel source">
+          <h2>取得元</h2>
+          <p id="page-title"></p>
+          <p id="page-url"></p>
+          <p id="captured-at" class="muted"></p>
+        </section>
+        <section class="panel" aria-labelledby="verdict-heading">
+          <div class="verdict">
+            <h2 id="verdict-heading">判定結果</h2>
+            <strong id="status" class="badge"></strong>
+          </div>
+          <ul id="reasons"></ul>
+          <p id="company-state"></p>
+          <p id="research-state" class="callout"></p>
+          <p id="missing"></p>
+          <p id="required"></p>
+        </section>
+        <section class="panel" aria-labelledby="company-values-heading">
+          <h2 id="company-values-heading">企業名の反映状況</h2>
+          <p class="muted">
+            最後に判定・再判定した時点の値です。入力欄の編集は「修正して再判定」を押すと反映されます。
+          </p>
+          <dl class="company-values">
+            <dt>元ページから取得した企業名</dt>
+            <dd id="company-original"></dd>
+            <dt>利用者が修正した企業名</dt>
+            <dd id="company-override"></dd>
+            <dt>判定・再判定に採用された企業名</dt>
+            <dd id="company-adopted"></dd>
+          </dl>
+          <p id="company-adopted-source" class="muted"></p>
+        </section>
+        <section class="panel">
+          <h2>抽出内容と修正</h2>
+          <p class="muted">
+            空欄は未取得です。修正値は元の抽出値と区別して保持します。各項目6,000文字以内。
+          </p>
+          <form id="edit-form">
+            <div id="fields"></div>
+            <div class="actions">
+              <button type="submit" id="recheck">修正して再判定</button
+              ><button type="button" id="reset" class="secondary">
+                修正をリセット
+              </button>
+            </div>
+          </form>
+        </section>
+        <section class="panel" aria-labelledby="analysis-heading">
+          <h2 id="analysis-heading">ローカルLLMで求人を分析</h2>
+          <p>
+            「求人票」と判定された内容を手動で分析します。編集後は先に「修正して再判定」を押してください。
+          </p>
+          <div class="actions">
+            <button type="button" id="load-models" class="secondary">
+              Ollamaのモデル一覧を取得
+            </button>
+          </div>
+          <label for="analysis-model">使用するローカルモデル</label>
+          <select id="analysis-model">
+            <option value="">モデル一覧を取得してください</option>
+          </select>
+          <label for="analysis-preferences">希望条件（1行に1条件）</label>
+          <textarea
+            id="analysis-preferences"
+            rows="4"
+            maxlength="2000"
+            placeholder="例：希望：AI活用・業務改善に関わりたい。&#10;ハード：年収450万円以上&#10;除外：顧客向け案件アサイン型の仕事"
+          ></textarea>
+          <p
+            id="analysis-preferences-source"
+            class="muted"
+            aria-live="polite"
+          ></p>
+          <p class="muted">
+            <button
+              type="button"
+              id="load-shared-preferences"
+              class="secondary small"
+            >
+              共通の希望条件を読み込む
+            </button>
+            <a href="preferences.html" target="_blank">共通の希望条件を編集</a>
+          </p>
+          <p
+            id="analysis-criteria-notice"
+            class="callout criteria-notice"
+            role="status"
+            hidden
+          ></p>
+          <details>
+            <summary>比較する条件を確認</summary>
+            <p class="muted">
+              1行が1条件です。「除外条件」「ハード条件」等の見出し、または「除外：」等の接頭辞で分類します。複数の条件を1行にまとめず、ここで分割結果を確認してください。プロフィール見出し以降は応募者情報として扱います。
+            </p>
+            <ul id="analysis-criteria"></ul>
+          </details>
+          <p class="muted">
+            求人情報と希望条件は合計6,000文字まで。求人本文・希望条件はこのPCのOllamaへ送り、分析結果はこの確認画面のセッション内で保持します。
+          </p>
+          <div class="actions">
+            <button type="button" id="analyze" disabled>
+              ローカルLLMで分析
+            </button>
+          </div>
+          <p id="analysis-status" role="status" aria-live="polite">
+            モデル一覧を取得してから分析してください。
+          </p>
+          <details>
+            <summary>接続情報</summary>
+            <p id="analysis-origin" class="evidence"></p>
+          </details>
+          <section id="analysis-result" hidden>
+            <h3>分析結果</h3>
+            <p class="muted">
+              条件別の評価にはLLMの解釈を含みます。事実の保証や応募の自動判断ではありません。採用値の出所・根拠・元の求人票を確認してください。
+            </p>
+            <p id="analysis-meta" class="muted"></p>
+            <p id="analysis-stale" class="callout" hidden>
+              入力変更前の分析結果です。現在の求人情報・希望条件で再実行してください。
+            </p>
+            <p id="analysis-legacy" class="callout" hidden>
+              以前の形式の分析結果です。条件別評価を表示するには再分析してください。既存の抽出・修正値は保持されています。
+            </p>
+            <div id="analysis-v2">
+              <p id="analysis-record" class="muted"></p>
+              <h4>分析時点の採用情報（LLMによる書き換えなし）</h4>
+              <p class="muted">
+                抽出・修正された値の記録です。求人原文の事実と同一とは限りません。元の抽出値と利用者修正値を展開して確認できます。
+              </p>
+              <div id="analysis-facts"></div>
+              <h4>条件別評価</h4>
+              <p class="muted">
+                要確認：採用情報を確認したが判断の根拠が不足。未調査：必要な外部情報源への調査・照合を実施していない。根拠IDと参照箇所はコードで照合しますが、判定を意味的に裏付けるかは利用者が確認してください。
+              </p>
+              <div
+                class="evaluation-scroll"
+                tabindex="0"
+                aria-label="条件別評価表"
+              >
+                <table class="evaluation-table">
+                  <caption>
+                    希望条件と分析時点の採用値の比較
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">比較した希望条件</th>
+                      <th scope="col">判定・方式</th>
+                      <th scope="col">理由</th>
+                      <th scope="col">根拠ID・取得元項目・該当箇所</th>
+                    </tr>
+                  </thead>
+                  <tbody id="analysis-evaluations"></tbody>
+                </table>
+              </div>
+              <h4>優先順の確認事項</h4>
+              <p class="muted">
+                除外条件 → ハード条件 → 職種 → その他の希望・注意事項 →
+                外部調査の順。調査・応募は自動実行しません。
+              </p>
+              <ol id="analysis-questions"></ol>
+            </div>
+          </section>
+        </section>
+      </section>
+      <footer>
+        確認画面を閉じるとこの結果は削除されます。ブラウザ終了・拡張再読み込み後は、元ページから再取得してください。
+      </footer>
+    </main>
+  </body>
+</html>

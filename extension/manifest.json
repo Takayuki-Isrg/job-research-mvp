@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "求人調査 MVP — 求人票の確認",
+  "version": "0.1.0",
+  "minimum_chrome_version": "116",
+  "description": "求人票の抽出・確認と、このPC上のOllamaによる手動分析。外部企業調査・Sheets登録は行いません。",
+  "permissions": ["contextMenus", "activeTab", "scripting", "storage"],
+  "host_permissions": ["http://127.0.0.1/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "求人検索ツール（希望条件の管理）" },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src http://127.0.0.1:11434; base-uri 'none'; form-action 'none'"
+  }
+}

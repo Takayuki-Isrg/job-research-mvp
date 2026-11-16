@@ -1,0 +1,45 @@
+.preferences #preferences-text {
+  min-height: max(320px, 55vh);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.preferences-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  min-height: 2.2em;
+}
+#save-status {
+  font-size: 14px;
+  font-weight: 700;
+  color: #446080;
+}
+#save-status[data-state='saved'] {
+  color: #1d6b3a;
+}
+#save-status[data-state='error'],
+#char-count[data-over='true'] {
+  color: #a32020;
+}
+.callout.error {
+  background: #fdeeee;
+  border-left-color: #a32020;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.preferences-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding-top: 8px;
+}
+.preferences-actions #retry {
+  grid-column: 1 / -1;
+}
+@media (max-width: 600px) {
+  .preferences-actions {
+    grid-template-columns: 1fr;
+  }
+}

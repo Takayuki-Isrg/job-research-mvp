@@ -1,0 +1,265 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, 'Yu Gothic UI', sans-serif;
+  color: #1f3041;
+  background: #f3f6f9;
+  line-height: 1.65;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 36px 24px 48px;
+}
+h1 {
+  font-size: 28px;
+  margin: 4px 0 12px;
+}
+h2 {
+  font-size: 19px;
+  margin: 0 0 12px;
+}
+p {
+  margin: 8px 0;
+}
+header {
+  margin-bottom: 24px;
+}
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  color: #446080;
+  letter-spacing: 0.06em;
+}
+.panel {
+  background: white;
+  border: 1px solid #d9e1ea;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 18px 0;
+}
+.source p {
+  overflow-wrap: anywhere;
+}
+.muted,
+footer {
+  font-size: 13px;
+  color: #566576;
+}
+.verdict {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.company-values {
+  margin: 16px 0;
+}
+.company-values dt {
+  font-size: 13px;
+  font-weight: 700;
+  color: #526174;
+  margin-top: 14px;
+}
+.company-values dd {
+  margin: 4px 0 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+#company-adopted {
+  font-weight: 700;
+  padding: 10px 12px;
+  background: #f0f5fc;
+  border-radius: 6px;
+}
+.verdict h2 {
+  margin: 0;
+}
+.badge {
+  padding: 4px 16px;
+  border-radius: 24px;
+  background: #edf0f4;
+}
+.badge[data-status='求人票'] {
+  background: #dff3e9;
+  color: #125c3c;
+}
+.badge[data-status='判定保留'] {
+  background: #fff0cc;
+  color: #704e00;
+}
+.badge[data-status='対象外'] {
+  background: #edf0f4;
+  color: #465261;
+}
+.callout {
+  padding: 12px 16px;
+  background: #f0f5fc;
+  border-left: 3px solid #456b9c;
+}
+.criteria-notice {
+  background: #fdf6e7;
+  border-left-color: #a8710a;
+}
+.criterion-warnings {
+  margin: 4px 0 8px;
+  font-size: 13px;
+  color: #7a4f00;
+  overflow-wrap: anywhere;
+}
+#notice {
+  padding: 12px 16px;
+  background: #e7effa;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+#notice[data-error='true'] {
+  background: #fee9e7;
+  color: #8c2620;
+}
+.field {
+  border-top: 1px solid #e4e9f0;
+  padding: 20px 0;
+}
+label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+textarea {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 14px;
+  border: 1px solid #a8b6c7;
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 52px;
+}
+textarea:focus,
+button:focus-visible {
+  outline: 3px solid #9abbe3;
+  outline-offset: 2px;
+}
+.evidence {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  color: #526174;
+}
+.original {
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #526174;
+  margin: 8px 0;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+}
+button {
+  border: 0;
+  border-radius: 6px;
+  padding: 12px 20px;
+  background: #245a92;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+button.secondary {
+  background: #e8edf3;
+  color: #304862;
+}
+button.small {
+  padding: 6px 12px;
+  font-size: 13px;
+  margin-right: 12px;
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+footer {
+  margin-top: 24px;
+}
+[hidden] {
+  display: none !important;
+}
+select {
+  font: inherit;
+  padding: 10px;
+  border: 1px solid #a8b6c7;
+  border-radius: 6px;
+  max-width: 100%;
+  margin: 4px 0 16px;
+}
+#analysis-heading ~ label {
+  margin-top: 16px;
+}
+#analysis-result {
+  border-top: 1px solid #d9e1ea;
+  margin-top: 24px;
+  padding-top: 12px;
+}
+#analysis-result p,
+#analysis-status {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 600px) {
+  main {
+    padding: 20px 12px;
+  }
+  .panel {
+    padding: 18px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+}
+
+.evaluation-scroll {
+  overflow-x: auto;
+}
+.evaluation-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 720px;
+  table-layout: fixed;
+  font-size: 14px;
+}
+.evaluation-table caption {
+  text-align: left;
+  padding: 8px 0;
+}
+.evaluation-table th,
+.evaluation-table td {
+  border: 1px solid #d9e1ea;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.evaluation-table th {
+  background: #f0f5fc;
+}
+.evaluation-table th:nth-child(2) {
+  width: 100px;
+}
+.evaluation-table th:last-child {
+  width: 35%;
+}
+.evaluation-table details + details {
+  margin-top: 12px;
+}

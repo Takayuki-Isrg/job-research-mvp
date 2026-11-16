@@ -1,0 +1,20 @@
+{
+  "name": "job-research-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:browser": "node tests/browser-smoke.js",
+    "test:native": "node tests/native-smoke.js",
+    "test:analysis": "node tests/analysis-browser.js",
+    "format": "prettier --write \"extension/**/*.{js,html,css,json}\" \"tests/**/*.{js,html,css,json}\" package.json .prettierrc.json",
+    "format:check": "prettier --check \"extension/**/*.{js,html,css,json}\" \"tests/**/*.{js,html,css,json}\" package.json .prettierrc.json",
+    "test:preferences": "node tests/preferences-browser.js"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0",
+    "playwright": "^1.56.1",
+    "prettier": "3.9.10"
+  }
+}
