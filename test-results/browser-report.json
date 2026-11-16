@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "fixtures": 7,
+  "checks": [
+    "extract/classify",
+    "edit/reclassify",
+    "reset",
+    "session reload",
+    "tab isolation",
+    "close cleanup",
+    "HTML displayed as text",
+    "RA header extraction/edit/reset using intercepted fixture",
+    "RA qualifications/location section boundaries using intercepted fixture",
+    "only localhost and intercepted RA fixture requests"
+  ],
+  "nativeContextMenuAndActiveTab": "manual check required",
+  "browser": "158.0.8127.18"
+}

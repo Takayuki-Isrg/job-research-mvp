@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "ollama": "mocked; no real job data sent",
+  "checks": [
+    "manual-only analysis",
+    "saved adopted values",
+    "evidence display and source provenance",
+    "condition table and priority questions",
+    "invalid evidence rejected without overwriting previous analysis",
+    "corrections used by analysis while extraction remains unchanged",
+    "unsaved edits blocked",
+    "stale results marked",
+    "failure preserves extraction",
+    "session reload",
+    "model selection persists and survives list refresh",
+    "new review tab restores model without network requests",
+    "HTML rendered as text"
+  ]
+}

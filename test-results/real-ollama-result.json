@@ -1,0 +1,26 @@
+{
+  "model": "gemma3:4b",
+  "generatedAt": "2026-11-08T03:40:38.331Z",
+  "signature": "{\"fields\":{\"company\":\"架空の検証株式会社\",\"title\":\"社内システム開発エンジニア\",\"description\":\"社内システムの開発と業務改善を担当します。\",\"qualifications\":\"システム開発経験\",\"location\":\"東京都内\",\"salary\":\"年収500万円から700万円\",\"employmentType\":\"正社員\"},\"preferences\":\"社内システム開発と業務改善を希望。\"}",
+  "input": {
+    "fields": {
+      "company": "架空の検証株式会社",
+      "title": "社内システム開発エンジニア",
+      "description": "社内システムの開発と業務改善を担当します。",
+      "qualifications": "システム開発経験",
+      "location": "東京都内",
+      "salary": "年収500万円から700万円",
+      "employmentType": "正社員"
+    },
+    "preferences": "社内システム開発と業務改善を希望。"
+  },
+  "result": {
+    "summary": "架空の検証株式会社にて、社内システムの開発と業務改善を担当する社内システム開発エンジニアの求人です。",
+    "matches": [],
+    "concerns": [],
+    "questions": [
+      "システム開発経験の具体的な内容について",
+      "業務改善の具体的な内容について"
+    ]
+  }
+}

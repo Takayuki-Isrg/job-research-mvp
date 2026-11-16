@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": [
+    "toolbar handler opens one preferences tab and focuses it again",
+    "autosave after input stops, status display, restore on reload",
+    "save failure keeps input, shows error, retry saves",
+    "non-UTF-8 import rejected without changes",
+    "import asks before overwriting; cancel keeps current text",
+    "export downloads UTF-8 text identical to the editor",
+    "review page uses shared preferences as default and never writes them",
+    "per-job analyzed preferences take priority; explicit reload of shared preferences",
+    "no horizontal scroll at 390px"
+  ]
+}
